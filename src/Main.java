@@ -2,12 +2,13 @@ package src;
 public class Main {
     public static void main(String args[]){
         Seguradora seguradora;
-        Sinistro sinistro;
+        Sinistro sinistro,teste;
         Veiculo veiculo;
         Cliente cliente;
 
         seguradora = new Seguradora("Seguro", "3321", "maria@hotmail.com", "rua einstein,3453");
         sinistro = new Sinistro( "12/02/23","minha casa 2324");
+        teste = new Sinistro( "12/02/23","testando o id do sinistro");
         veiculo = new Veiculo("ao3 3453", "fusca", "volksvagem");
         cliente = new Cliente("Nome do cliente", "019.082.980-06", "06/09/2002", 58, "rua dos bobos, 0");
         
@@ -20,12 +21,15 @@ public class Main {
         seguradora.settelefone("12345678");
         System.out.printf("Dados novos seguradora:\nNome: %s\nTelefone: %s\nEmail: %s\nEndereço: %s\n\n",seguradora.getNome(),seguradora.gettelefone(),seguradora.getemail(),seguradora.getendereço());
 
-         //Teste classe sinistro
+        //Teste classe sinistro
         System.out.printf("Dados iniciais sinistro:\nData: %s\nEndereço: %s\nId: %d\n",sinistro.getdata(), sinistro.getendereço(), sinistro.getid());
         sinistro.setdata("01/02/03");
         sinistro.setenderço("Ciclo básico Unicamp");
         sinistro.setid(40);
         System.out.printf("Dados novos sinistro:\nData: %s\nEndereço: %s\nId: %d\n\n",sinistro.getdata(), sinistro.getendereço(), sinistro.getid());
+
+        //Teste do mecanismo gerador de Id
+        System.out.printf("Teste da criação de ID nos sinistros:\nData: %s\nEndereço: %s\nId: %d\n\n",teste.getdata(), teste.getendereço(), teste.getid());
 
         //Teste classe veiculo
         System.out.printf("Dados iniciais veiculo:\nPlaca: %s\nMarca: %s\nModelo: %s\n",veiculo.getplaca(),veiculo.getmarca(), veiculo.getmodelo());
