@@ -48,57 +48,70 @@ public class Cliente {
     }
 
     //to string
-    public String tostring(int idade){
-        String idadestr = Integer.toString(idade);
-        return idadestr;
+    public String tostring(){
+        String dados;
+        dados ="Nome: "+nome+"\nIdade: "+idade+".\nData de Nascimento: "+dataNascimento+".\nCPF: "+cpf+".\nEndereço: "+endereço+".";
+        return dados;
     }
+    
     //calculdador de digitos verificadores
-    protected int calculadordv(String cpf){
+    protected boolean calculadordv(String cpf){
         int d1 = 0, d2 = 0, soma1=0, soma2=0;
-        for(int i=2; i<11; i++){
-            int pos = 11-i-1;
-            soma1+=cpf.charAt((pos))*i;
+        boolean valido = false;
+
+        //Calculo do primeiro digito
+        for(int i=0; i<9; i++){
+            int num = 10-i;
+            int digito = (int)(cpf.charAt(i) - 48);
+            soma1+= digito*num;;
         }
-        for(int i=2; i<11; i++){
-            int pos = 11-i-2;
-            soma1+=cpf.charAt((pos))*i;
-        }
-        d1=soma1%11;
-        d1=soma2%11;
-        if (d1==1 || d1==0 ){
+        d1=11-soma1%11;
+        if (d1==11 || d1==10){
             d1=0;
-        } else {
-            d1 = 11-d1;
         }
-        if (d2==1 || d2==0 ){
+        
+        //calculo do segundo digito
+        for(int i=0; i<9; i++){
+            int num = 11-i;
+            int digito = (int)(cpf.charAt(i) - 48);
+            soma2+= digito*num;;
+        }
+        soma2+= d1*2;
+        d2=11-soma2%11;
+        if (d2==10 || d2==11){
             d2=0;
-        } else {
-            d2 = 11-d2;
         }
-        return d1*10+d2;
+
+        //verificando se é valido ou não
+        if ((int)(cpf.charAt(9) - 48)==d1 && (int)(cpf.charAt(10) - 48)==d2){
+            valido = true;
+        } 
+
+        return valido;
     }
 
     //validar cpf
     public boolean validarCPF(String cpf){
         boolean veredito = true;
         boolean igual = true;
-        String dv;
 
         cpf = cpf.replaceAll("[^0-9]","");
         int len = cpf.length();
+
         if (len!=11){
-            veredito = false;
+            return false;
         }
-        for( int i=1; i< len; i++)
+
+        for( int i=1; i< 11; i++)
             if (cpf.charAt(i) != cpf.charAt(0))
                 igual = false;
-        if (igual == true)
-            veredito = false;
-        dv = Integer.toString(calculadordv(cpf));
-        if(cpf.substring(9, 10)!=dv){
-            veredito = false;
+        if (igual == true){
+            return false;
+        }
+
+        if(calculadordv(cpf) == false){
+            return false;
         }
         return veredito;
     }
-    
 }

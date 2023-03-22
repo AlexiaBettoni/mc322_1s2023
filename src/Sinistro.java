@@ -1,13 +1,14 @@
 package src;
 public class Sinistro {
+    public static int casos = 1;
     private int id;
     private String data;
     private String endereço;
 
     //Constructor
-    public Sinistro( int id, String data, String endereço){
-        this.id = id;
-        id+=1;
+    public Sinistro(String data, String endereço){
+        this.id = casos;
+        casos+=1;
         this.data = data;
         this.endereço = endereço;
     }
@@ -28,7 +29,7 @@ public class Sinistro {
     public int getid(){
         return id;
     }
-    public void setenderço(int id){
+    public void setid(int id){
         this.id = id;
     }
 }
