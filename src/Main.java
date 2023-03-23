@@ -48,7 +48,9 @@ public class Main {
         System.out.printf("Dados iniciais cliente:\nNome: %s\nData de nascimento: %s\nCPF: %s\nEndereço: %s\nIdade: %d\n\n",cliente.getNome(), cliente.getdataNascimento(), cliente.getcpf(), cliente.getendereço(), cliente.getidade());
         System.out.printf("To string method:\n%s\n\n",cliente.tostring());
         
-        //Para controle estou usando um CPF válido gerado automaticamente
+        //Para controle estou usando um CPF válido gerado automaticamente e depois com um cpf inválido
+        System.out.printf("Validar CPF method: %b\n\n",cliente.validarCPF(cliente.getcpf()));
+        cliente.setcpf("835.986.600-78");
         System.out.printf("Validar CPF method: %b\n\n",cliente.validarCPF(cliente.getcpf()));
 
     }
