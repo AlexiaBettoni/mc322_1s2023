@@ -9,7 +9,7 @@ public class Main {
         seguradora = new Seguradora("Seguro", "3321", "maria@hotmail.com", "rua einstein,3453");
         sinistro = new Sinistro( "12/02/23","minha casa 2324");
         teste = new Sinistro( "12/02/23","testando o id do sinistro");
-        veiculo = new Veiculo("ao3 3453", "fusca", "volksvagem");
+        veiculo = new Veiculo("ao3 3453", "fusca", "volksvagem",2015);
         cliente = new Cliente("Nome do cliente", "019.082.980-06", "06/09/2002", 58, "rua dos bobos, 0");
         
 
