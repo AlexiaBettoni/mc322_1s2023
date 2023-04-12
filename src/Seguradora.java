@@ -1,10 +1,16 @@
 package src;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Seguradora {
     private String nome;
     private String telefone;
     private String email;
     private String endereço;
-    
+    private ArrayList<Sinistro> listaSinistros = new ArrayList<Sinistro>();
+    private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+
     //Constructor
     public Seguradora(String nome, String telefone, String email, String endereço){
         this.nome = nome;
@@ -37,5 +43,20 @@ public class Seguradora {
     }
     public void setendereço(String endereço){
         this.endereço = endereço;
+    }
+
+    //Cadastro e remoção clientes
+    public boolean cadastrarCliente(Cliente cliente){
+        boolean teste;
+        teste = listaClientes.add(cliente);
+        return teste;
+    }
+    public static Cliente findByCpf(ArrayList<Cliente> listaClientes, String cpf) {
+        return listaClientes.stream().filter(cliente -> cpf.equals(cliente.getNome())).findFirst().orElse(null);
+    }
+    public boolean removerCliente(String nome){
+        Cliente cliente = findByCpf(listaClientes, nome);
+        return listaClientes.remove(cliente);
+        
     }
 }

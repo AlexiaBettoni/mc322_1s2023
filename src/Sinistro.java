@@ -57,6 +57,11 @@ public class Sinistro {
         this.cliente = cliente;
     }
 
-    
+    //to String method
+    public String tostring(){
+        String dados;
+        dados = "ID: "+id+"\nData: "+data+"\nEndereço: "+endereço+"\n Nome Seguradora: "+seguradora.getNome()+"\nTelefone Seguradora:"+seguradora.getendereço()+"\nPlaca do veículo: "+veiculo.getplaca()+"\nModelo do veículo: "+veiculo.getmodelo()+"\nNome do Cliente: "+cliente.getNome()+"\n\n";
+        return dados;
+    }
 }
 
