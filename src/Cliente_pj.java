@@ -1,14 +1,14 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class Cliente_pj extends Cliente{
     private String cnpj;
-    private Date dataFundacao;
+    private LocalDate dataFundacao;
 
     //Constructor
-    public Cliente_pj(String nome , String endereco ,  Veiculo[] listaVeiculos , String cnpj, Date dataFundacao){
+    public Cliente_pj(String nome , String endereco ,  Veiculo[] listaVeiculos , String cnpj, LocalDate dataFundacao){
         super ( nome , endereco , listaVeiculos );
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
@@ -21,17 +21,17 @@ public class Cliente_pj extends Cliente{
     public void setcnpj(String cnpj){
         this.cnpj = cnpj;
     }
-    public Date getdataFundacao(){
+    public LocalDate getdataFundacao(){
         return dataFundacao;
     }
-    public void setdataFundacao(Date dataFundacao){
+    public void setdataFundacao(LocalDate dataFundacao){
         this.dataFundacao = dataFundacao;
     }
 
     //to string
     public String toString(){
         String dados;
-        dados ="Data de Fundação: "+dataFundacao+"\nCNPJ: "+cnpj+"\nNome: "+getNome()+"\nEndereço: "+getendereço()+"\nLista dos veículos: "+Arrays.toString(getlistaVeiculos())+"\n\n";
+        dados ="\n------Dados Cliente PJ-----\nData de Fundação: "+dataFundacao+"\nCNPJ: "+cnpj+"\nNome: "+getNome()+"\nEndereço: "+getendereço()+"\nLista dos veículos: "+Arrays.toString(getlistaVeiculos())+"\n";
         return dados;
     }
     

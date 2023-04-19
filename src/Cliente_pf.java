@@ -1,18 +1,18 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class Cliente_pf extends Cliente{
     private String cpf;
-    private Date dataNascimento;
-    private Date dataLicenca;
+    private LocalDate dataNascimento;
+    private LocalDate dataLicenca;
     private String educacao;
     private String genero;
     private String classeEconomica;
 
     //Constructor
-    public Cliente_pf ( String nome , String endereco , Date dataLicenca , String educacao , String genero , String classeEconomica , Veiculo[] listaVeiculos , String cpf , Date dataNascimento ) {
+    public Cliente_pf ( String nome , String endereco , LocalDate dataLicenca , String educacao , String genero , String classeEconomica , Veiculo[] listaVeiculos , String cpf , LocalDate dataNascimento ) {
         // chama o construtor da superclasse
         super ( nome , endereco , listaVeiculos );
         this.dataLicenca = dataLicenca;
@@ -30,16 +30,16 @@ public class Cliente_pf extends Cliente{
     public void setcpf(String cpf){
         this.cpf = cpf;
     }
-    public Date getdataNascimento(){
+    public LocalDate getdataNascimento(){
         return dataNascimento;
     }
-    public void setdataNascimento(Date dataNascimento){
+    public void setdataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
     }
-    public Date getdataLicenca(){
+    public LocalDate getdataLicenca(){
         return dataLicenca;
     }
-    public void setdataLicenca(Date dataLicenca){
+    public void setdataLicenca(LocalDate dataLicenca){
         this.dataLicenca = dataLicenca;
     }
     public String geteducacao(){
@@ -64,7 +64,7 @@ public class Cliente_pf extends Cliente{
     //to string
     public String toString(){
         String dados;
-        dados ="Data de Nascimento: "+dataNascimento+"\nCPF: "+cpf+"\nNome: "+getNome()+"\nEndereço: "+getendereço()+"\nData da Licença: "+getdataLicenca()+"\nNível de educação: "+geteducacao()+"\nGenero: "+getgenero()+"\nClasse Economica: "+getclasseEconomica()+"\nLista dos veículos: "+Arrays.toString(getlistaVeiculos())+"\n\n";
+        dados ="\n-----Dados Cliente PF-----\nData de Nascimento: "+dataNascimento+"\nCPF: "+cpf+"\nNome: "+getNome()+"\nEndereço: "+getendereço()+"\nData da Licença: "+getdataLicenca()+"\nNível de educação: "+geteducacao()+"\nGenero: "+getgenero()+"\nClasse Economica: "+getclasseEconomica()+"\nLista dos veículos: "+Arrays.toString(getlistaVeiculos())+"\n";
         return dados;
     }
     

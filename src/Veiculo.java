@@ -40,9 +40,9 @@ public class Veiculo {
     }
 
     //To String
-    public String tostring(){
+    public String toString(){
         String dados;
-        dados ="Placa: "+placa+"\nModelo: "+modelo+".\nMarca: "+marca+".\nAno de Fabricação: "+anoFabricacao+".";
+        dados ="\n-----Dados veículo-----\nPlaca: "+placa+"\nModelo: "+modelo+".\nMarca: "+marca+".\nAno de Fabricação: "+anoFabricacao+".\n";
         return dados;
     }
 }
