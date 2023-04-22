@@ -41,11 +41,11 @@ public class Main {
         veiculos4[0] = inVeiculo();
         clientePF = new Cliente_pf("Robin", "Batcaverna", date, "Médio completo", "Homem", "média", veiculos, "355.796.820-00", date);
         clientePFinv = new Cliente_pf("Robinho", "Batcaverna", date, "Médio incompleto", "Homem", "média", veiculos2, "355.796.820-50", date);
-        clientePJ = new Cliente_pj("House construçoes", "Rua prego, 333", veiculos3, "94.628.177/0001-80", date);
-        clientePJinv = new Cliente_pj("House construçoes", "Rua prego, 333", veiculos4, "94.628.177/0001-00", date);
+        clientePJ = new Cliente_pj("House construçoes", "Rua prego, 333", veiculos3, "18.781.203/0001-28", date);
+        clientePJinv = new Cliente_pj("House construçoes", "Rua prego, 333", veiculos4, "18.781.203/0001-26", date);
         sinistro = new Sinistro("03/02/01", "Rua Walt Disney, 32", seguradora, veiculo, clientePF);
 
-        //Teste dos métodos to String
+        //Teste dos métodos to String 
         System.out.println("\n\n--------Teste dos métodos to String-------\n");
         System.out.printf(sinistro.toString());
         System.out.printf(veiculo.toString());
@@ -54,13 +54,13 @@ public class Main {
         
         //Para controle estou usando um CPF válido gerado automaticamente e depois com um cpf inválido
         System.out.println("\n\n--------Teste do Validar CPF e CNPJ-------\n");
-        System.out.printf("Validar CPF method: %b\n",clientePF.validarCPF(clientePF.getcpf()));
-        System.out.printf("Validar CPF method: %b\n",clientePFinv.validarCPF(clientePF.getcpf()));
-        System.out.printf("Validar CNPJ method: %b\n",clientePJ.validarcnpj(clientePJ.getcnpj()));
-        System.out.printf("Validar CNPJ method: %b\n",clientePJinv.validarcnpj(clientePJinv.getcnpj()));
+        System.out.printf("Validar CPF com CPF válido: %b\n",clientePF.validarCPF(clientePF.getcpf()));
+        System.out.printf("Validar CPF com CPF inválido: %b\n",clientePFinv.validarCPF(clientePFinv.getcpf()));
+        System.out.printf("Validar CNPJ com CNPJ válido: %b\n",clientePJ.validarcnpj(clientePJ.getcnpj()));
+        System.out.printf("Validar CNPJ com CNPJ inválido: %b\n",clientePJinv.validarcnpj(clientePJinv.getcnpj()));
 
         //Teste da classe seguradora
-        System.out.println("\n\n--------Teste da classe Seguradora-------\nPrimeiro cadastrei um cpf e um cnpj e depois exclui o cpf\n");
+        System.out.println("\n\n--------Teste da classe Seguradora-------\n\nPrimeiro cadastrei um cpf e um cnpj e depois exclui o cpf");
         seguradora.cadastrarCliente(clientePF);
         seguradora.cadastrarCliente(clientePJ);
         System.out.printf("\n"+seguradora.listarClientes("ClientePJ")+"\n");

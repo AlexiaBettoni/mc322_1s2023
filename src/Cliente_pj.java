@@ -42,37 +42,36 @@ public class Cliente_pj extends Cliente{
 
         //Calculo do primeiro digito
         for(int i=0; i<4; i++){
-            int num = 5-i;
+            int num = 6+i;
             int digito = (int)(cnpj.charAt(i) - 48);
             soma1+= digito*num;;
         }
         for(int i=4; i<12; i++){
-            int num = 12-i;
+            int num = i-2;
             int digito = (int)(cnpj.charAt(i) - 48);
             soma1+= digito*num;;
         }
-        d1=11-soma1%11;
+        d1=soma1%11;
         if (d1==11 || d1==10){
             d1=0;
         }
         
         //calculo do segundo digito
         for(int i=0; i<5; i++){
-            int num = 6-i;
+            int num = 5+i;
             int digito = (int)(cnpj.charAt(i) - 48);
             soma2+= digito*num;;
         }
         for(int i=5; i<12; i++){
-            int num = 14-i;
+            int num = i-3;
             int digito = (int)(cnpj.charAt(i) - 48);
             soma2+= digito*num;;
         }
-        soma2+= d1*2;
-        d2=11-soma2%11;
+        soma2+= d1*9;
+        d2=soma2%11;
         if (d2==10 || d2==11){
             d2=0;
         }
-
         //verificando se é valido ou não
         if ((int)(cnpj.charAt(12) - 48)==d1 && (int)(cnpj.charAt(13) - 48)==d2){
             valido = true;
@@ -89,7 +88,7 @@ public class Cliente_pj extends Cliente{
         cnpj = cnpj.replaceAll("[^0-9]","");
         int len = cnpj.length();
 
-        if (len!=13){
+        if (len!=14){
             return false;
         }
 
