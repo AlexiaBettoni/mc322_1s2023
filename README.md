@@ -6,3 +6,6 @@ O objetivo do projeto é durante o semestre desenvolver uma modelagem de um sist
 
 Objetivo Lab 2 (28/03):
 Implementar o sistema de cadastros de clientes e sinistros, e criar as classes do Sinistro, Veiculo, Cliente, Seguradora e Main.
+
+Objetivo Lab 3 (22/04):
+Aplicação da herança Simples, entrada de dados via teclado e coleção de dados.
