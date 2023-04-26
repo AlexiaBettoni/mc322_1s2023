@@ -114,4 +114,11 @@ public class Seguradora {
         listaSinistros.add(sinistro);
         return true;
     }
+
+    //Calcular o preço cliente
+    public void calcularPrecoSeguroCliente(Cliente cliente){
+        double valor = cliente.calculaScore() * listaSinistros.size()+1;
+        cliente.setvalorSeguro(valor);
+    }
+    
 }

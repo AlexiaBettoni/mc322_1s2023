@@ -68,64 +68,19 @@ public class Cliente_pf extends Cliente{
         return dados;
     }
     
-    //calculdador de digitos verificadores
-    protected boolean calculadordv(String cpf){
-        int d1 = 0, d2 = 0, soma1=0, soma2=0;
-        boolean valido = false;
-
-        //Calculo do primeiro digito
-        for(int i=0; i<9; i++){
-            int num = 10-i;
-            int digito = (int)(cpf.charAt(i) - 48);
-            soma1+= digito*num;;
+    //Calcula o score do cliente
+    public double calculaScore(){
+        double idade;
+        double base = CalcSeguro.VALOR_BASE.getfator();
+        if (2023-dataNascimento.getYear()>=30){
+            idade = CalcSeguro.FATOR_18_30.getfator();
+        } else if (2023-dataNascimento.getYear()>60){
+            idade = CalcSeguro.FATOR_60_90.getfator();
+        } else {
+            idade = CalcSeguro.FATOR_30_60.getfator();
         }
-        d1=11-soma1%11;
-        if (d1==11 || d1==10){
-            d1=0;
-        }
-        
-        //calculo do segundo digito
-        for(int i=0; i<9; i++){
-            int num = 11-i;
-            int digito = (int)(cpf.charAt(i) - 48);
-            soma2+= digito*num;;
-        }
-        soma2+= d1*2;
-        d2=11-soma2%11;
-        if (d2==10 || d2==11){
-            d2=0;
-        }
-
-        //verificando se é valido ou não
-        if ((int)(cpf.charAt(9) - 48)==d1 && (int)(cpf.charAt(10) - 48)==d2){
-            valido = true;
-        } 
-
-        return valido;
-    }
-
-    //validar cpf
-    public boolean validarCPF(String cpf){
-        boolean veredito = true;
-        boolean igual = true;
-
-        cpf = cpf.replaceAll("[^0-9]","");
-        int len = cpf.length();
-
-        if (len!=11){
-            return false;
-        }
-
-        for( int i=1; i< 11; i++)
-            if (cpf.charAt(i) != cpf.charAt(0))
-                igual = false;
-        if (igual == true){
-            return false;
-        }
-
-        if(calculadordv(cpf) == false){
-            return false;
-        }
-        return veredito;
+        int tam = Cliente.getlistaVeiculos().length;
+        double valor = base * idade * tam;
+        return valor;
     }
 }

@@ -5,13 +5,14 @@ import java.util.Arrays;
 public class Cliente {
     private String nome;
     private String endereço;
-    private Veiculo[] listaVeiculos;
+    private static Veiculo[] listaVeiculos;
+    double valorSeguro;
 
     //Constructor
     public Cliente(String nome, String endereço, Veiculo[] listaVeiculos){
         this.nome = nome;
         this.endereço = endereço;
-        this.listaVeiculos = listaVeiculos;
+        Cliente.listaVeiculos = listaVeiculos;
     }
 
     //getters e setters
@@ -28,11 +29,14 @@ public class Cliente {
         this.endereço = endereço;
     }
     
-    public Veiculo[] getlistaVeiculos(){
+    public static Veiculo[] getlistaVeiculos(){
         return listaVeiculos;
     }
     public void setlistaVeiculos(Veiculo[] listaVeiculos){
-        this.listaVeiculos = listaVeiculos;
+        Cliente.listaVeiculos = listaVeiculos;
+    }
+    public void setvalorSeguro(double valor ){
+        this.valorSeguro = valor;
     }
     
 
@@ -41,5 +45,13 @@ public class Cliente {
         String dados;
         dados ="Nome: "+nome+"\nEndereço: "+endereço+"\nLista dos veículos: "+Arrays.toString(listaVeiculos)+"\n\n";
         return dados;
+    }
+
+    //Calcula score geral
+    public double calculaScore(){
+        double base = CalcSeguro.VALOR_BASE.getfator();
+        int tam = Cliente.getlistaVeiculos().length;
+        double valor = base * tam;
+        return valor;
     }
 }
