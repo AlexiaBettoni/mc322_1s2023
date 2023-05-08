@@ -27,8 +27,7 @@ public class Cliente {
     }
     public void setendereço(String endereço){
         this.endereço = endereço;
-    }
-    
+    } 
     public static Veiculo[] getlistaVeiculos(){
         return listaVeiculos;
     }
@@ -39,7 +38,6 @@ public class Cliente {
         this.valorSeguro = valor;
     }
     
-
     //to string
     public String toString(){
         String dados;

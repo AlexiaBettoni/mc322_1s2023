@@ -114,11 +114,33 @@ public class Seguradora {
         listaSinistros.add(sinistro);
         return true;
     }
+    public boolean addSinistro(Sinistro sin ){
+        listaSinistros.add(sin);
+        return true;
+    }
 
     //Calcular o preço cliente
-    public void calcularPrecoSeguroCliente(Cliente cliente){
-        double valor = cliente.calculaScore() * listaSinistros.size()+1;
+    public double calcularPrecoSeguroCliente(Cliente cliente){
+        double valor = cliente.calculaScore();
         cliente.setvalorSeguro(valor);
+        return valor;
+    }
+
+    public double receitaTotal(){
+        int tam = listaClientes.size();
+        double soma = 0;
+        for( int i = 0; i < tam; i++){
+            soma += calcularPrecoSeguroCliente(listaClientes.get(i));
+        }
+        return soma;
+    }
+
+    //Transferir veiculos de cliente para cliente
+    public void Transferir(String cpfor, String cpfdis){
+        Cliente origem = findByName(listaClientes, cpfor);
+        Cliente distino = findByName(listaClientes, cpfdis);
+        Veiculo[] carros = origem.getlistaVeiculos(); 
+        distino.setlistaVeiculos(carros);
     }
     
 }
