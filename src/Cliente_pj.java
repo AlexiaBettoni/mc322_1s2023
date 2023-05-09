@@ -37,6 +37,7 @@ public class Cliente_pj extends Cliente{
         return dados;
     }
 
+    //Calcula o score do cliente
     public double calculaScore(){
         double base = CalcSeguro.VALOR_BASE.getfator();
         int tam = Cliente.getlistaVeiculos().length;

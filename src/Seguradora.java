@@ -139,8 +139,7 @@ public class Seguradora {
     public void Transferir(String cpfor, String cpfdis){
         Cliente origem = findByName(listaClientes, cpfor);
         Cliente distino = findByName(listaClientes, cpfdis);
-        Veiculo[] carros = origem.getlistaVeiculos(); 
-        distino.setlistaVeiculos(carros);
+        distino.setlistaVeiculos(origem.getlistaVeiculos());
     }
     
 }

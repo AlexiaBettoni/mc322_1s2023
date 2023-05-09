@@ -15,6 +15,7 @@ public enum MenuOperacoes {
 
     Scanner scan = new Scanner(System.in);
 
+    //Menu geral
     public void select(){
         System.out.println("Digite a sua escolha entre as opções: \n1- Cadastraar\n2- Listar\n3- Excluir\n4- Gerar\n5- Transferir\n6- Calcular\n0- Sair");
         int valor = scan.nextInt();
@@ -43,6 +44,7 @@ public enum MenuOperacoes {
         }
     }
     
+    //Menu cadastro
     public void selectcad(){
         System.out.println("Digite a sua escolha entre as opções: \n11- Cadastrar Cliente PF ou PJ\n12- Cadastrar Veículo\n13- Cadastrar Seguradora\n14- Voltar");
         int valor = scan.nextInt();
@@ -76,7 +78,8 @@ public enum MenuOperacoes {
                 selectcad();
         }
     }
-    
+
+    //Menu excluir
     public void selectexc(){
         System.out.println("Digite a sua escolha entre as opções: \n31- Excluir Cliente\n32- Excluir Veículo\n33- Excluir Sinistro\n14- Voltar");
         int valor = scan.nextInt();
@@ -97,6 +100,7 @@ public enum MenuOperacoes {
         }
     }
     
+    //Menu listar
     public void selectlist(){
         System.out.println("Digite a sua escolha entre as opções: \n21- Listar Cliente PF ou PJ por Seguradora\n22- Listar Sinistro por Seguradora\n23- Listar Sinistro por Cliente\n24- Listar Veículo por Cliente\n25- Listar Veículo por Seguradora\n14- Voltar Menu");
         int valor = scan.nextInt();
