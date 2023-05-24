@@ -108,12 +108,6 @@ public class Seguradora {
         return false;
     }
     
-    public boolean gerarSinistro(String data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente ){
-        Sinistro sinistro;
-        sinistro = new Sinistro("03/02/01", "Rua Walt Disney, 32", seguradora, veiculo, cliente);
-        listaSinistros.add(sinistro);
-        return true;
-    }
     
     public boolean addSinistro(Sinistro sin ){
         listaSinistros.add(sin);

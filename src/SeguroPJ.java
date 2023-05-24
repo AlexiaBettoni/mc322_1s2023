@@ -1,12 +1,16 @@
 package src;
 
-public class SeguroPJ {
+import java.sql.Date;
+import java.util.ArrayList;
+
+public class SeguroPJ extends Seguro{
     Cliente_pj cliente;
     Frota frota;
     boolean autoriza = true;
     int VALOR_BASE = 10;
 
-    public SeguroPJ(Frota frota, Cliente_pj cliente){
+    public SeguroPJ(Frota frota, Cliente_pj cliente, Date dataini, Date datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
+        super(dataini, datafim, seguradora, listaSinistros);
         this.cliente = cliente;
         this.frota = frota;
     }
@@ -33,12 +37,17 @@ public class SeguroPJ {
     }
 
     //Autorização do condutor 
-    public boolean autorizarCondutor(){
-        autoriza = true;
+    @Override
+    public boolean autorizarCondutor(Condutor condutor){
+        condutores.add(condutor);
         return true;
     }
-    public boolean desautorizarCondutor(){
-        autoriza = false;
+    @Override
+    public boolean desautorizarCondutor(Condutor condutor){
+        if (condutores.contains(condutor)==true){
+            condutores.remove(condutor);
+            return true;
+        }
         return false;
     }
 

@@ -3,8 +3,6 @@ package src;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import javax.xml.crypto.Data;
-
 public class Condutor {
     String nome, telefone, endereco, email;
     final String cpf;
@@ -59,5 +57,12 @@ public class Condutor {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    //to String
+
+    //Add sinistro
+    public void addSinistro(Sinistro sin){
+        listaSinistros.add(sin);
     }
 }
