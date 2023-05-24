@@ -114,6 +114,7 @@ public class Seguradora {
         listaSinistros.add(sinistro);
         return true;
     }
+    
     public boolean addSinistro(Sinistro sin ){
         listaSinistros.add(sin);
         return true;
