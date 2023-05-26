@@ -1,48 +1,63 @@
 package src;
 
-import java.time.LocalDate;
-import java.util.Arrays;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Cliente_pj extends Cliente{
-    private String cnpj;
-    private LocalDate dataFundacao;
-    private int quantidadeFuncionarios;
+    private final String cnpj;
+    private Date dataFundacao;
+    ArrayList<Frota> listaFrota;
+    Scanner scan = new Scanner(System.in);
 
     //Constructor
-    public Cliente_pj(String nome , String endereco ,  Veiculo[] listaVeiculos , String cnpj, LocalDate dataFundacao, int quantidadeFuncionarios){
-        super ( nome , endereco , listaVeiculos );
-        this.cnpj = cnpj;
+    public Cliente_pj(String nome, String endereço, String telefone, String email, Date dataFundacao, String cnpj, ArrayList<Frota> listaFrota){
+        super ( nome , endereço, email, telefone);
+        this.listaFrota = listaFrota;
         this.dataFundacao = dataFundacao;
-        this.quantidadeFuncionarios = quantidadeFuncionarios;
+        this.cnpj = cnpj;
     }
 
     //getters e setters
     public String getcnpj(){
         return cnpj;
     }
-    public void setcnpj(String cnpj){
-        this.cnpj = cnpj;
-    }
-    public LocalDate getdataFundacao(){
+    public Date getdataFundacao(){
         return dataFundacao;
     }
-    public void setdataFundacao(LocalDate dataFundacao){
+    public void setdataFundacao(Date dataFundacao){
         this.dataFundacao = dataFundacao;
     }
-
-    //to string
-    public String toString(){
-        String dados;
-        dados ="\n------Dados Cliente PJ-----\nData de Fundação: "+dataFundacao+"\nCNPJ: "+cnpj+"\nNome: "+getNome()+"\nEndereço: "+getendereço()+"\nLista dos veículos: "+Arrays.toString(getlistaVeiculos())+"\n";
-        return dados;
+    public ArrayList<Frota> getListaFrota() {
+        return listaFrota;
     }
 
-    //Calcula o score do cliente
-    public double calculaScore(){
-        double base = CalcSeguro.VALOR_BASE.getfator();
-        int tam = Cliente.getlistaVeiculos().length;
-        double valor = base * (1 + quantidadeFuncionarios/100) * tam;
-        return valor;
+
+    //Frota
+    public boolean atualizarFrota(){
+        System.out.println("Digite a sua escolha entre as opções: 1-Excluir frota, 2-Apagar frota inteira");
+        int valor = scan.nextInt();
+        scan.nextLine();
+        if (valor==2){
+            listaFrota = null;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean cadastrarFrota(Frota frota){
+        if (listaFrota.contains(frota)==false){
+            listaFrota.add(frota);
+            return true;
+        }
+        return false;
     }
 
+    public boolean getVeiculosPorFrota(Frota frota){
+        if (listaFrota.contains(frota)==true){
+            frota.getveiculos();
+            return true;
+        }
+        return false;
+    }
 }

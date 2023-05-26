@@ -1,55 +1,42 @@
 package src;
 
-import java.util.Arrays;
-
-public class Cliente {
-    private String nome;
-    private String endereço;
-    private static Veiculo[] listaVeiculos;
-    double valorSeguro;
+public abstract class Cliente {
+    private String nome, telefone, endereço, email;
 
     //Constructor
-    public Cliente(String nome, String endereço, Veiculo[] listaVeiculos){
+    public Cliente(String nome, String endereço, String telefone, String email){
         this.nome = nome;
         this.endereço = endereço;
-        Cliente.listaVeiculos = listaVeiculos;
+        this.email = email;
+        this.telefone = telefone;
     }
 
-    //getters e setters
-    public String getNome(){
-        return nome;
+    //Getters e setters
+    public String getEmail() {
+        return email;
     }
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-    public String getendereço(){
+    public String getEndereço() {
         return endereço;
     }
-    public void setendereço(String endereço){
+    public String getNome() {
+        return nome;
+    }
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setEndereço(String endereço) {
         this.endereço = endereço;
-    } 
-    public static Veiculo[] getlistaVeiculos(){
-        return listaVeiculos;
     }
-    public void setlistaVeiculos(Veiculo[] listaVeiculos){
-        Cliente.listaVeiculos = listaVeiculos;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    public void setvalorSeguro(double valor ){
-        this.valorSeguro = valor;
-    }
-    
-    //to string
-    public String toString(){
-        String dados;
-        dados ="Nome: "+nome+"\nEndereço: "+endereço+"\nLista dos veículos: "+Arrays.toString(listaVeiculos)+"\n\n";
-        return dados;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    //Calcula score geral
-    public double calculaScore(){
-        double base = CalcSeguro.VALOR_BASE.getfator();
-        int tam = Cliente.getlistaVeiculos().length;
-        double valor = base * tam;
-        return valor;
-    }
+    
+
 }

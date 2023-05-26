@@ -16,12 +16,25 @@ public class Frota {
     }
 
     public boolean addVeiculo(Veiculo carro){
-        listaVeiculos.add(carro);
-        return true;
+        if (listaVeiculos.contains(carro)==false){
+            listaVeiculos.add(carro);
+            return true;
+        }
+        return false;
     }
+    
     public boolean removeVeiculo(Veiculo carro){
-        listaVeiculos.remove(carro);
-        return true;
+        if (listaVeiculos.contains(carro)==true){
+            listaVeiculos.remove(carro);
+            return true;
+        }
+        return false;
+    }
+
+    public void getveiculos(){
+        for (Veiculo veiculo:listaVeiculos){
+            System.out.printf("\nModelo e placa do veículo: "+veiculo.getmodelo()+" "+veiculo.getplaca());
+        }
     }
 
 }

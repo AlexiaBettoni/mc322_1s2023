@@ -63,5 +63,6 @@ public class Sinistro {
         dados = "\n-----Dados do Sinistro-----\nID: "+id+"\nData: "+data+"\nEndereço: "+endereço+"\nNome Seguradora: "+seguradora.getNome()+"\nTelefone Seguradora:"+seguradora.getendereço()+"\nPlaca do veículo: "+veiculo.getplaca()+"\nModelo do veículo: "+veiculo.getmodelo()+"\nNome do Cliente: "+cliente.getNome()+"\n";
         return dados;
     }
+    
 }
 

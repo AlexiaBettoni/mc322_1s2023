@@ -26,15 +26,18 @@ public class SeguroPF extends Seguro{
     //to String
     public String toString() {
         String dados;
-        dados ="\n------Dados Seguro PJ-----\nCliente: "+cliente.getNome()+"\nCPF: "+cliente.getcpf()+"\nVeiculo: "+veiculo+"\nAutorização do condutor: "+autoriza+"\n";
+        dados ="\n------Dados Seguro PJ-----\nCliente: "+cliente.getNome()+"\nCPF: "+cliente.getCpf()+"\nVeiculo: "+veiculo+"\nAutorização do condutor: "+autoriza+"\n";
         return dados;
     }
 
     //Autorização do condutor 
     @Override
     public boolean autorizarCondutor(Condutor condutor){
-        condutores.add(condutor);
-        return true;
+        if (condutores.contains(condutor)==false){
+            condutores.add(condutor);
+            return true;
+        }
+        return false; 
     }
     @Override
     public boolean desautorizarCondutor(Condutor condutor){
@@ -46,7 +49,7 @@ public class SeguroPF extends Seguro{
     }
 
     //Calcula valor
-    public double calculaValor(int idade, int qtdvei, int anos, int sinCli, int sinCond){
+    public void calculaValor(int idade, int qtdvei, int anos, int sinCli, int sinCond){
         double FATOR_IDADE;
         double valor;
 
@@ -59,6 +62,6 @@ public class SeguroPF extends Seguro{
         }
 
         valor = VALOR_BASE * FATOR_IDADE * (1 + 1/( qtdvei +2) ) * (2 + sinCli /10) * (5 + sinCond /10);
-        return valor;
+        this.valorMensal = (int)valor;
     }
 }

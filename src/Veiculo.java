@@ -1,8 +1,6 @@
 package src;
 public class Veiculo {
-    private String placa;
-    private String marca;
-    private String modelo;
+    private String placa, marca, modelo;
     private int anoFabricacao;
 
     //Construtor

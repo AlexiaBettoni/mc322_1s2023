@@ -3,15 +3,14 @@ package src;
 import java.util.ArrayList;
 
 public class Seguradora {
-    private String nome;
-    private String telefone;
-    private String email;
-    private String endereço;
+    private final String cnpj;
+    private String nome, telefone, endereço, email;
     private ArrayList<Sinistro> listaSinistros = new ArrayList<Sinistro>();
     private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 
     //Constructor
-    public Seguradora(String nome, String telefone, String email, String endereço){
+    public Seguradora(String nome, String telefone, String email, String endereço, String cnpj){
+        this.cnpj = cnpj;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -46,9 +45,18 @@ public class Seguradora {
 
     //Cadastro e remoção clientes
     public boolean cadastrarCliente(Cliente cliente){
-        boolean teste;
-        teste = listaClientes.add(cliente);
-        return teste;
+        if ( listaClientes.contains(cliente)==false){
+            listaClientes.add(cliente);
+            return true;
+        }
+        return false;
+    }
+
+    public void listarClientes(){
+        System.out.println("\n");
+        for ( Cliente cliente:listaClientes){
+            System.out.printf(cliente.getNome()+", ");
+        }
     }
     
     public static Cliente findByName(ArrayList<Cliente> listaClientes, String nome) {

@@ -11,6 +11,7 @@ public abstract class Seguro {
     Seguradora seguradora;
     ArrayList<Sinistro> listaSinistros;
     ArrayList<Condutor> condutores;
+    int valorMensal;
 
     public Seguro(Date datainicio, Date datafim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros){
         this.id = casos;
@@ -65,16 +66,16 @@ public abstract class Seguro {
     }
 
     //Gerar Sinistro
-    public boolean gerarSinistro(String data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente ){
+    public boolean gerarSinistro(String data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         Sinistro sinistro;
-        sinistro = new Sinistro("03/02/01", "Rua Walt Disney, 32", seguradora, veiculo, cliente);
+        sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);
         return true;
     }
 
     //Calcula valor
-    public int calcularValor(){
-        return VALOR_BASE;
+    public void calcularValor(){
+        this.valorMensal = VALOR_BASE;
     }
       
 }

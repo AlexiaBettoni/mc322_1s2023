@@ -39,8 +39,11 @@ public class SeguroPJ extends Seguro{
     //Autorização do condutor 
     @Override
     public boolean autorizarCondutor(Condutor condutor){
-        condutores.add(condutor);
-        return true;
+        if (condutores.contains(condutor)==false){
+            condutores.add(condutor);
+            return true;
+        }
+        return false; 
     }
     @Override
     public boolean desautorizarCondutor(Condutor condutor){

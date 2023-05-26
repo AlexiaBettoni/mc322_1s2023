@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Main {
     //Método para cadastrar a classe veículo pelo teclado
+    
+
     public static Veiculo inVeiculo(){
         Scanner input = new Scanner(System.in);
         System.out.println("Para cadastrar o seu veículo digite a Placa, a marca, o modelo e o ano de fabricação do carro:");
@@ -19,11 +21,11 @@ public class Main {
         return carro;
     }
     public static void main(String args[]){
-
+        Validacao val = new Validacao();
         LocalDate date = LocalDate.of(2020, 1, 8);
         LocalDate date2 = LocalDate.of(1982, 1, 8);
         MenuOperacoes menu = MenuOperacoes.VOLTAR;
-
+        
         //Criação da seguradora e dos veículos
         Seguradora seguradora = new Seguradora("Nossa casa","33333-2222" , "nossacasa@gmail.com.br", "Rua 7 de Setembro, 007");
         Veiculo[] veiculos = new Veiculo[1];
