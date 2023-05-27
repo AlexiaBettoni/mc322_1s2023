@@ -32,6 +32,12 @@ public class Cliente_pj extends Cliente{
         return listaFrota;
     }
 
+    //To String
+    @Override
+    public String toString() {
+        String texto = "\nCliente: "+super.getNome() +", cnpj: "+ cnpj + ", telefone: "+ super.getTelefone();
+        return texto;
+    }
 
     //Frota
     public boolean atualizarFrota(){

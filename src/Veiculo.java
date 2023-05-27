@@ -37,10 +37,9 @@ public class Veiculo {
         this.anoFabricacao = anoFabricacao;
     }
 
-    //To String
-    public String toString(){
-        String dados;
-        dados ="\n-----Dados veículo-----\nPlaca: "+placa+"\nModelo: "+modelo+".\nMarca: "+marca+".\nAno de Fabricação: "+anoFabricacao+".\n";
-        return dados;
+    //to String
+    public String toString() {
+        String texto = "\nModelo do veículo: "+modelo +", marca: "+marca+ ", placa: "+ placa;
+        return texto;
     }
 }

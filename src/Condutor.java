@@ -59,7 +59,11 @@ public class Condutor {
         this.telefone = telefone;
     }
 
-    //to String
+    //To String
+    public String toString() {
+        String texto = "\nCondutor: "+nome +", cpf: "+cpf+ ", telefone: "+ telefone;
+        return texto;
+    }
 
     //Add sinistro
     public void addSinistro(Sinistro sin){

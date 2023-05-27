@@ -24,11 +24,12 @@ public class SeguroPF extends Seguro{
     }
 
     //to String
+    @Override
     public String toString() {
-        String dados;
-        dados ="\n------Dados Seguro PJ-----\nCliente: "+cliente.getNome()+"\nCPF: "+cliente.getCpf()+"\nVeiculo: "+veiculo+"\nAutorização do condutor: "+autoriza+"\n";
-        return dados;
+        String texto = "\nSeguro id: "+super.getId() +", Seguradora: "+super.getSeguradora()+", Dados do cliente: "+cliente.toString();
+        return texto;
     }
+
 
     //Autorização do condutor 
     @Override
@@ -46,6 +47,15 @@ public class SeguroPF extends Seguro{
             return true;
         }
         return false;
+    }
+
+    //Gerar o sinistro e cadastrar ele no cliente e no seguro
+    @Override
+    public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+        Sinistro sinistro;
+        sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
+        listaSinistros.add(sinistro);
+        return true;
     }
 
     //Calcula valor

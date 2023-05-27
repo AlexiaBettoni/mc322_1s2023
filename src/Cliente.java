@@ -36,6 +36,12 @@ public abstract class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+    //To String
+    public String toString() {
+        String texto = "\nCliente: "+nome + ", telefone: "+ telefone;
+        return texto;
+    }
 
     
 

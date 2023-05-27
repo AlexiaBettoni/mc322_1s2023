@@ -48,6 +48,12 @@ public class Cliente_pf extends Cliente{
         this.listaVeiculos = listaVeiculos;
     }
 
+    //To String
+    @Override
+    public String toString() {
+        String texto = "\nCliente: "+super.getNome() +", cpf: "+cpf+ ", telefone: "+ super.getTelefone();
+        return texto;
+    }
 
     //Alteração da Frota
     public boolean cadastrarVeiculo(Veiculo veiculo){

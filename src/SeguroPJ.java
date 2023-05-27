@@ -30,10 +30,10 @@ public class SeguroPJ extends Seguro{
     }
 
     //to String
+    @Override
     public String toString() {
-        String dados;
-        dados ="\n------Dados Seguro PJ-----\nCliente: "+cliente.getNome()+"\nCNPJ: "+cliente.getcnpj()+"\nFrota de veículos: "+frota+"\nAutorização do condutor: "+autoriza+"\n";
-        return dados;
+        String texto = "\nSeguro id: "+super.getId() +", Seguradora: "+super.getSeguradora()+", Dados do cliente: "+cliente.toString();
+        return texto;
     }
 
     //Autorização do condutor 

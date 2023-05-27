@@ -1,15 +1,18 @@
 package src;
+
+import java.sql.Date;
+
 public class Sinistro {
     public static int casos = 1;
     private int id;
-    private String data;
+    private Date data;
     private String endereço;
     private Seguradora seguradora;
     private Veiculo veiculo;
     private Cliente cliente;
 
     //Constructor
-    public Sinistro(String data, String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public Sinistro(Date data, String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         this.id = casos;
         casos+=1;
         this.data = data;
@@ -20,10 +23,10 @@ public class Sinistro {
     }
 
     //Setters e Getters
-    public String getdata(){
+    public Date getdata(){
         return data;
     }
-    public void setdata(String data){
+    public void setdata(Date data){
         this.data = data;
     }
     public String getendereço(){
@@ -57,11 +60,10 @@ public class Sinistro {
         this.cliente = cliente;
     }
 
-    //to String method
-    public String toString(){
-        String dados;
-        dados = "\n-----Dados do Sinistro-----\nID: "+id+"\nData: "+data+"\nEndereço: "+endereço+"\nNome Seguradora: "+seguradora.getNome()+"\nTelefone Seguradora:"+seguradora.getendereço()+"\nPlaca do veículo: "+veiculo.getplaca()+"\nModelo do veículo: "+veiculo.getmodelo()+"\nNome do Cliente: "+cliente.getNome()+"\n";
-        return dados;
+    //to String
+    public String toString() {
+        String texto = "\nSinistro id: "+ id+", data: "+data+ ", seguradora: "+ seguradora+ ", nome do cliente: "+ cliente.getNome()+ ", placa do veículo: "+ veiculo.getplaca();
+        return texto;
     }
     
 }

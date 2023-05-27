@@ -51,6 +51,12 @@ public abstract class Seguro {
     public void setSeguradora(Seguradora seguradora) {
         this.seguradora = seguradora;
     }
+    
+    //To String
+    public String toString() {
+        String texto = "\nSeguro id: "+id +", Seguradora: "+seguradora;
+        return texto;
+    }
 
     //Autorização do condutor
     public boolean autorizarCondutor(Condutor condutor){
@@ -66,7 +72,7 @@ public abstract class Seguro {
     }
 
     //Gerar Sinistro
-    public boolean gerarSinistro(String data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         Sinistro sinistro;
         sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);
