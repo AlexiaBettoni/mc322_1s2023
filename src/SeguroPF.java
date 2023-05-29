@@ -10,12 +10,13 @@ public class SeguroPF extends Seguro{
     int VALOR_BASE = 10;
 
     public SeguroPF(Veiculo veiculo, Cliente_pf cliente, Date dataini, Date datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
-        super(dataini, datafim, seguradora, listaSinistros);
+        super(dataini, datafim, seguradora, listaSinistros, cliente);
         this.cliente = cliente;
         this.veiculo = veiculo;
     }
 
     //getters e setters
+    @Override
     public Cliente getCliente() {
         return cliente;
     }

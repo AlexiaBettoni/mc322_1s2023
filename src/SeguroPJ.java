@@ -10,12 +10,13 @@ public class SeguroPJ extends Seguro{
     int VALOR_BASE = 10;
 
     public SeguroPJ(Frota frota, Cliente_pj cliente, Date dataini, Date datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
-        super(dataini, datafim, seguradora, listaSinistros);
+        super(dataini, datafim, seguradora, listaSinistros, cliente);
         this.cliente = cliente;
         this.frota = frota;
     }
 
     //getters e setters
+    @Override
     public Cliente getCliente() {
         return cliente;
     }
@@ -61,4 +62,11 @@ public class SeguroPJ extends Seguro{
         return valor;
     }
 
+    //Gerar Sinistro
+    public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+        Sinistro sinistro;
+        sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
+        listaSinistros.add(sinistro);
+        return true;
+    }
 }

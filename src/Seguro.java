@@ -8,18 +8,20 @@ public abstract class Seguro {
     final private int id;
     int VALOR_BASE = 10;
     Date dataInicio, dataFim;
+    Cliente cliente;
     Seguradora seguradora;
     ArrayList<Sinistro> listaSinistros;
     ArrayList<Condutor> condutores;
     int valorMensal;
 
-    public Seguro(Date datainicio, Date datafim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros){
+    public Seguro(Date datainicio, Date datafim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros, Cliente cliente){
         this.id = casos;
         casos+=1;
         this.dataFim = datafim;
         this.dataInicio = datainicio;
         this.seguradora =  seguradora;
         this.listaSinistros = listaSinistros;
+        this.cliente = cliente;
     }
 
     //getters e setters
@@ -51,7 +53,11 @@ public abstract class Seguro {
     public void setSeguradora(Seguradora seguradora) {
         this.seguradora = seguradora;
     }
-    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+
     //To String
     public String toString() {
         String texto = "\nSeguro id: "+id +", Seguradora: "+seguradora;
@@ -73,8 +79,7 @@ public abstract class Seguro {
 
     //Gerar Sinistro
     public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
-        Sinistro sinistro;
-        sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
+        Sinistro sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);
         return true;
     }

@@ -66,7 +66,6 @@ public class Seguradora {
         }
         return false;
     }
-
     public void listarClientes(){
         System.out.println("\n");
         for ( Cliente cliente:listaClientes){
@@ -93,8 +92,11 @@ public class Seguradora {
     //Métodos de busca de sinistros e seguros por clientes
     public ArrayList<Seguro> getSegurosPorCliente(Cliente cliente){
         ArrayList<Seguro> seguros = new ArrayList<>(listaSeguros);
-
-
+        for (Seguro seg : listaSeguros){
+            if (seg.getCliente()==cliente){
+                seguros.add(seg);
+            }
+        }
         return seguros;
     }
     
