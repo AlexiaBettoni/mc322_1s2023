@@ -56,7 +56,9 @@ public abstract class Seguro {
     public Cliente getCliente() {
         return cliente;
     }
-
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     //To String
     public String toString() {
@@ -82,6 +84,13 @@ public abstract class Seguro {
         Sinistro sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);
         return true;
+    }
+    public boolean excluirSinistro(Sinistro sin){
+        if (listaSinistros.contains(sin)==true){
+            listaSinistros.remove(sin);
+            return true;
+        }
+        return false;
     }
 
     //Calcula valor

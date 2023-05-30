@@ -44,6 +44,12 @@ public class Seguradora {
     public void setendereço(String endereço){
         this.endereço = endereço;
     }
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+    public ArrayList<Seguro> getListaSeguros() {
+        return listaSeguros;
+    }
 
     //To String
     public String toString() {
@@ -90,14 +96,35 @@ public class Seguradora {
     }
 
     //Métodos de busca de sinistros e seguros por clientes
-    public ArrayList<Seguro> getSegurosPorCliente(Cliente cliente){
-        ArrayList<Seguro> seguros = new ArrayList<>(listaSeguros);
+    public ArrayList<Seguro> getSegurosPorCliente(String cliente){
+        ArrayList<Seguro> seguros = new ArrayList<Seguro>();
         for (Seguro seg : listaSeguros){
-            if (seg.getCliente()==cliente){
+            if (seg.getCliente().getNome()==cliente){
                 seguros.add(seg);
             }
         }
         return seguros;
+    }
+
+    public ArrayList<Sinistro> getSinistroPorCliente(String cliente){
+        ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
+        for (Seguro seg : listaSeguros){
+            for (Sinistro sin: seg.getListaSinistros()){
+                if (sin.getcliente().getNome() == cliente){
+                    sinistros.add(sin);
+                }
+            } 
+        }
+        return sinistros;
+    }
+
+    //Método de cálculo da recita total da seguradora
+    public int calculaReceita(){
+        int receita = 0;
+        for (Seguro seg : listaSeguros){
+            receita += seg.valorMensal;
+        }
+        return receita;
     }
     
 }

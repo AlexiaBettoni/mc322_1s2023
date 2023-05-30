@@ -111,4 +111,56 @@ public class Cadastros {
         return novoPJ;
     }
 
+    //retorna o cliente com base no nome dele
+    public static Cliente clienteporNome(Seguradora seg, String nome){
+        Cliente cliente = null;
+        for (Cliente clie: seg.getListaClientes()){
+            if (clie.getNome()== nome){
+                cliente = clie;
+            }
+        }
+        return cliente;
+    }
+
+    public static Seguro SeguroporId(Seguradora seg, int id){
+        Seguro cliente = null;
+        for (Seguro clie: seg.getListaSeguros()){
+            if (clie.getId()== id){
+                cliente = clie;
+            }
+        }
+        return cliente;
+    }
+    
+    public static Seguro SeguroporCliente(Seguradora seg, Cliente nome){
+        Seguro seguro = null;
+        for (Seguro clie: seg.getListaSeguros()){
+            if (clie.getCliente()== nome){
+                seguro = clie;
+            }
+        }
+        return seguro;
+    }
+
+    public static Sinistro SinistroporId(Seguro seg, int id){
+        Sinistro cliente = null;
+        for (Sinistro clie: seg.listaSinistros){
+            if (clie.getid()== id){
+                cliente = clie;
+            }
+        }
+        return cliente;
+    }
+
+    //tranferência de seguro 
+    public static boolean transferencia(String conta1, String conta2, Seguradora seguradora){
+        Cliente cliente1 = clienteporNome(seguradora, conta1);
+        Cliente cliente2 = clienteporNome(seguradora, conta2);
+        if ( cliente1 == null || cliente2==null ){
+            return false;
+        }
+        Seguro seg = SeguroporCliente(seguradora, cliente1);
+        seg.setCliente(cliente2);
+        return true;
+    }
 }

@@ -5,6 +5,8 @@ import java.util.Scanner;
 public enum MenuOperacoes {
     SAIR(0),CADASTRAR(1), LISTAR(2), GERAR(4), EXCLUIR(3), TRANSFEERIR(5), CALCULAR(6),CADPFPJ(11), CADVEI(12), CADSEG(13), VOLTAR(14),LISTARCLIENTESEG(21), LISTARSINSEG(22), LISTARSINCLI(23), LISTARVEICLI(24), LISTARVEISEG(25), EXCLUIRCLI(31), EXCLUIRVEI(32), EXCLUIRSIN(33);
 
+    static Validacao  val;
+
     public final int operacao;
     MenuOperacoes(int operacao){
         this.operacao = operacao;
@@ -13,11 +15,12 @@ public enum MenuOperacoes {
         return this.operacao;
     }
 
+    Seguradora baseSeg = new Seguradora(null, null, null, null, null, null, null);
     Scanner scan = new Scanner(System.in);
 
     //Menu geral
     public void select(){
-        System.out.println("Digite a sua escolha entre as opções: \n1- Cadastraar\n2- Listar\n3- Excluir\n4- Gerar\n5- Transferir\n6- Calcular\n0- Sair");
+        System.out.println("Digite a sua escolha entre as opções: \n1- Cadastrar\n2- Listar\n3- Excluir\n4- Gerar Sinistro\n5- Transferir seguro\n6- Calcular receita seguradora\n0- Sair");
         int valor = scan.nextInt();
         scan.nextLine();
         MenuOperacoes esse = MenuOperacoes.values()[valor];
@@ -32,9 +35,19 @@ public enum MenuOperacoes {
             case GERAR:
                 break;
             case TRANSFEERIR:
-                System.out.println("Digite o nome da conta de origem e depois o de destino");
+                System.out.println("Digite o nome do titular da conta de origem e depois o de destino");
+                String conta1 = scan.nextLine();
+                String conta2 = scan.nextLine();
+                scan.nextLine();
+                Cadastros.transferencia(conta1, conta2, baseSeg);
+
             case CALCULAR:
-                System.out.println("Digite o nome da conta para o cálculo do seguro");
+                System.out.println("Digite o nome do titular para o cálculo do seguro");
+                String nome = scan.nextLine();
+                scan.nextLine();
+                Cliente novo = Cadastros.clienteporNome(baseSeg, nome);
+                Seguro c = Cadastros.SeguroporCliente(baseSeg, novo);
+                
             case SAIR:
                 System.out.println("Agradeçemos a atenção, tenha um bom dia:)");
                 break;
@@ -56,19 +69,17 @@ public enum MenuOperacoes {
                 int tipo = scan.nextInt();
                 scan.nextLine();
                 if (tipo ==1){
-                    System.out.println("Digite os dados para o seu cadastro de Cliente PF");
+                    Cliente novoPF = Cadastros.inClientePf();
+                    baseSeg.cadastrarCliente(novoPF);
                 } else if (tipo==2) {
-                    System.out.println("Digite os dados para o seu cadastro de Cliente PJ");
+                    Cliente novoPJ = Cadastros.inClientePJ();
+                    baseSeg.cadastrarCliente(novoPJ);
                 }
             case 12:
-                System.out.println("Esse veículo vai para algum cliente? Se sim digite o CPF/CNPJ do cliente se não digite 1");
-                int num = scan.nextInt();
+                System.out.println("Digite o nome do cliente para qual o veículo pertence");
+                String nome = scan.nextLine();
                 scan.nextLine();
-                if (num ==1){
-                    System.out.println("Digite os dados para o cadastro do Veículo");
-                } else if (num==2) {
-                    System.out.println("Digite os dados para o cadastro do Veículo");
-                }
+                Veiculo carro = Cadastros.inVeiculo();
             case 13:
                 System.out.println("Digite os dados para o cadastro da Seguradora");
             case 14:
@@ -88,8 +99,19 @@ public enum MenuOperacoes {
         switch(valor){
             case 31:
                 System.out.println("Digite o CPF/CNPJ do cliente a ser excluido");
+                String nome = scan.nextLine();
+                scan.nextLine();
+                Cliente c = Cadastros.clienteporNome(baseSeg, nome);
+                baseSeg.removerCliente(c);
             case 32:
+                System.out.println("Digite o ID do seguro que o sinistro a ser excluido");
+                int id = scan.nextInt();
+                Seguro seguro = Cadastros.SeguroporId(baseSeg, id);
                 System.out.println("Digite o ID do sinistro a ser excluido");
+                int id2 = scan.nextInt();
+                Sinistro sinistro = Cadastros.SinistroporId(seguro, id2);
+                scan.nextLine();
+                seguro.excluirSinistro(sinistro);
             case 33:
                 System.out.println("Digite a placa do veículo a ser excluido");
             case 14:
