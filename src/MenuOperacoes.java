@@ -1,4 +1,5 @@
 package src;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //Enum com o menu de operações
@@ -80,6 +81,7 @@ public enum MenuOperacoes {
                 String nome = scan.nextLine();
                 scan.nextLine();
                 Veiculo carro = Cadastros.inVeiculo();
+                
             case 13:
                 System.out.println("Digite os dados para o cadastro da Seguradora");
             case 14:
@@ -113,7 +115,13 @@ public enum MenuOperacoes {
                 scan.nextLine();
                 seguro.excluirSinistro(sinistro);
             case 33:
-                System.out.println("Digite a placa do veículo a ser excluido");
+                System.out.println("\nDigite a placa do veículo a ser excluido");
+                String placa = scan.nextLine();
+                scan.nextLine();
+                System.out.println("\nDigite o nome do cliente que o carro pertence");
+                String dono = scan.nextLine();
+                scan.nextLine();
+                Cadastros.excluirVeiculo(Cadastros.clienteporNome(baseSeg, dono), Cadastros.veiculoPorPlaca(baseSeg, placa));
             case 14:
                 select();
             default:
@@ -140,12 +148,23 @@ public enum MenuOperacoes {
                 }
             case 22:
                 System.out.println("Listagem dos sinistros da seguradora");
+                Cadastros.printSinistros(baseSeg);
             case 23:
-                System.out.println("Digite o CPF/CNPJ do cliente para ser listado os sinistros");
+                System.out.println("Digite o nome do cliente para ser listado os sinistros");
+                String nome = scan.nextLine();
+                scan.nextLine();
+                ArrayList<Sinistro> sinistros = Cadastros.sinistroPorCliente(baseSeg, nome);
+                System.out.println(sinistros);
             case 24:
-                System.out.println("Digite o CPF/CNPJ do cliente para ser listado os veículos ");
+                System.out.println("Digite o nome do cliente para ser listado os veículos");
+                String cliente = scan.nextLine();
+                scan.nextLine();
+                ArrayList<Veiculo> veiculos = Cadastros.listarVeiculo(cliente, baseSeg);
+                System.out.println(veiculos);
             case 25:
-                System.out.println("Listagem do veículo da seguradora");
+                System.out.println("Listagem dos veículos da seguradora");
+                ArrayList<Veiculo> listveiculos = Cadastros.allVeiculos(baseSeg);
+                System.out.println(listveiculos);
             case 14:
                 select();
             default:

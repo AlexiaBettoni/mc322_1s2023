@@ -163,4 +163,116 @@ public class Cadastros {
         seg.setCliente(cliente2);
         return true;
     }
+
+    //método para imprimir todos os sinistros de uma seguradora
+    public static void printSinistros(Seguradora seg){
+        for (Seguro seguro:seg.getListaSeguros()){
+            for (Sinistro sin:seguro.getListaSinistros()){
+                String string = sin.toString();
+                System.out.println(string);
+            }
+        }
+    }
+
+    //método retorna todos os clientes pf ou pj da seguradora
+    public static ArrayList<Cliente_pf> allPF(Seguradora seguradora){
+        ArrayList<Cliente_pf> clientes = new ArrayList<Cliente_pf>();
+        for (Cliente cliente: seguradora.getListaClientes()){
+            if(cliente instanceof Cliente_pf == true){
+                clientes.add((Cliente_pf)cliente);
+            }
+        }
+        return clientes;
+    }
+    public static ArrayList<Cliente_pj> allPJ(Seguradora seguradora){
+        ArrayList<Cliente_pj> clientes = new ArrayList<Cliente_pj>();
+        for (Cliente cliente: seguradora.getListaClientes()){
+            if(cliente instanceof Cliente_pj == true){
+                clientes.add((Cliente_pj)cliente);
+            }
+        }
+        return clientes;
+    }
+
+    //método para ter todas os veículos da seguradora
+    public static ArrayList<Veiculo> allVeiculos(Seguradora seguradora){
+        ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+        for (Cliente_pf cpf:allPF(seguradora)){
+            for (Veiculo veiculopf:cpf.getListaVeiculos()){
+                veiculos.add(veiculopf);
+            }
+        }
+        for (Cliente_pj cnpj:allPJ(seguradora)){
+            for (Frota frota:cnpj.getListaFrota()){
+                for(Veiculo veiculopj:frota.getListaVeiculos()){
+                    veiculos.add(veiculopj);
+                }
+            }
+        }
+        return veiculos;
+    }
+
+    //método para pegar o veículo por placa 
+    public static Veiculo veiculoPorPlaca(Seguradora seg, String placa){
+        Veiculo carro = null;
+        ArrayList<Veiculo> veiculos = allVeiculos(seg);
+        for (Veiculo veiculo:veiculos){
+            if (veiculo.getplaca()==placa){
+                carro = veiculo;
+            }
+        }
+        return carro;
+    }
+
+    public static boolean excluirVeiculo(Cliente cliente, Veiculo veiculo){
+        boolean base;
+        if (cliente instanceof Cliente_pf){
+            Cliente_pf cpf = (Cliente_pf)cliente;
+            base = cpf.removeVeiculo(veiculo);
+            if (base == true){
+                return true;
+            }
+        }
+        if (cliente instanceof Cliente_pj){
+            Cliente_pj cnpj = (Cliente_pj)cliente;
+            for (Frota frota: cnpj.getListaFrota()){
+                base = frota.removeVeiculo(veiculo);
+                if (base == true){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public static ArrayList<Veiculo> listarVeiculo(String nome, Seguradora seg){
+        Cliente cliente= clienteporNome(seg, nome);
+        if (cliente instanceof Cliente_pf){
+            Cliente_pf cpf = (Cliente_pf)cliente;
+            return cpf.getListaVeiculos();
+        }
+        if (cliente instanceof Cliente_pj){
+            Cliente_pj cnpj = (Cliente_pj)cliente;
+            ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+            for (Frota frota: cnpj.getListaFrota()){
+                for (Veiculo carro: frota.getListaVeiculos()){
+                    veiculos.add(carro);
+                }
+            }
+            return veiculos;
+        }
+        return null;
+    }
+
+    public static ArrayList<Sinistro> sinistroPorCliente(Seguradora seg, String nome){
+        Cliente cliente = clienteporNome(seg, nome);
+        ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
+        for (Seguro seguro:seg.getListaSeguros()){
+            if (seguro.getCliente() == cliente){
+                sinistros = seguro.getListaSinistros();
+                return sinistros;
+            }
+        }
+        return sinistros;
+    }
 }
