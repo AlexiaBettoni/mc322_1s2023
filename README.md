@@ -9,3 +9,9 @@ Implementar o sistema de cadastros de clientes e sinistros, e criar as classes d
 
 Objetivo Lab 3 (22/04):
 Aplicação da herança Simples, entrada de dados via teclado e coleção de dados.
+
+Objetivo Lab 4 (02/05):
+Utilização da classe estáticca e do Enum, aplicação de conceitos de polimorfismo e sobrecarga.
+
+Objetivo Lab 5 (02/06):
+Aprender a refatorar projetos e aplicar diferentes relacionamentos entre classes.
