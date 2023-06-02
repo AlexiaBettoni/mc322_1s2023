@@ -1,6 +1,6 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SeguroPF extends Seguro{
@@ -9,7 +9,7 @@ public class SeguroPF extends Seguro{
     boolean autoriza = true;
     int VALOR_BASE = 10;
 
-    public SeguroPF(Veiculo veiculo, Cliente_pf cliente, Date dataini, Date datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
+    public SeguroPF(Veiculo veiculo, Cliente_pf cliente, LocalDate dataini, LocalDate datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
         super(dataini, datafim, seguradora, listaSinistros, cliente);
         this.cliente = cliente;
         this.veiculo = veiculo;
@@ -52,7 +52,7 @@ public class SeguroPF extends Seguro{
 
     //Gerar o sinistro e cadastrar ele no cliente e no seguro
     @Override
-    public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public boolean gerarSinistro(LocalDate data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         Sinistro sinistro;
         sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);

@@ -1,15 +1,15 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Condutor {
-    String nome, telefone, endereco, email;
-    final String cpf;
-    Date dataNasc;
-    ArrayList<Sinistro> listaSinistros;
+    private String nome, telefone, endereco, email;
+    private final String cpf;
+    private LocalDate dataNasc;
+    private ArrayList<Sinistro> listaSinistros;
     
-    public Condutor(String nome, String telefone, String endereco, String email, String cpf, Date data, ArrayList<Sinistro> lista){
+    public Condutor(String nome, String telefone, String endereco, String email, String cpf, LocalDate data, ArrayList<Sinistro> lista){
         this.cpf = cpf;
         this.dataNasc = data;
         this.telefone = telefone;
@@ -22,7 +22,7 @@ public class Condutor {
     public String getCpf() {
         return cpf;
     }
-    public Date getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
     public String getEmail() {
@@ -40,7 +40,7 @@ public class Condutor {
     public String getTelefone() {
         return telefone;
     }
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
     public void setEmail(String email) {

@@ -1,6 +1,7 @@
 package src;
-import java.sql.Date;
+
 import java.util.Scanner;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -58,9 +59,11 @@ public class Cadastros {
         String educacao = input.nextLine();
         input.close();
 
-        System.out.println("\nPara cadastrar a data de nascimento digite o dia, o mes e o ano, com números e sem espaço ou pontuação:");
-        int num = input.nextInt();
-        Date data = new Date(num);
+        System.out.println("\nPara cadastrar a data de nascimento digite o dia,depois o mes e o ano:");
+        int dia = input.nextInt();
+        int mes = input.nextInt();
+        int ano = input.nextInt();
+        LocalDate data = LocalDate.of(ano, mes,dia);
         input.close();
 
         System.out.println("\nQuantos veículos estarão cadastrados nesse cliente?");
@@ -94,9 +97,11 @@ public class Cadastros {
             cnpj = input.nextLine();
         }
 
-        System.out.println("\nPara cadastrar a data de fundação digite o dia, o mes e o ano, com números e sem espaço ou pontuação:");
-        int num = input.nextInt();
-        Date data = new Date(num);
+        System.out.println("\nPara cadastrar a data de fundação digite o dia, o mes e o ano:");
+        int dia = input.nextInt();
+        int mes = input.nextInt();
+        int ano = input.nextInt();
+        LocalDate data = LocalDate.of(ano, mes,dia);
         input.close();
 
         System.out.println("\nQuantas frotas estarão cadastradas nesse cliente?");
@@ -274,5 +279,24 @@ public class Cadastros {
             }
         }
         return sinistros;
+    }
+
+    public static void adicionarVeiculo(Cliente cliente, Veiculo veiculo){
+        if (cliente instanceof Cliente_pf){
+            Cliente_pf clientePF = (Cliente_pf)cliente;
+            clientePF.cadastrarVeiculo(veiculo);
+            return;
+        } else if (cliente instanceof Cliente_pj){
+            Cliente_pj clientePJ = (Cliente_pj)cliente;
+            System.out.println("Digite o id da frota");
+            int nome = input.nextInt();
+            input.nextInt();
+            for (Frota frota:clientePJ.getListaFrota()){
+                if (frota.getId()==nome){
+                    frota.addVeiculo(veiculo);
+                }
+            }
+        }
+
     }
 }

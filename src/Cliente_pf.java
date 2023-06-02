@@ -1,15 +1,15 @@
 package src;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Cliente_pf extends Cliente{
     private final String cpf;
     private String genero, educacao;
-    private Date dataNasc;
+    private LocalDate dataNasc;
     private ArrayList<Veiculo> listaVeiculos;
 
     //Constructor
-    public Cliente_pf ( String nome, String endereço, String telefone, String email, String cpf, String genero, String educacao, Date dataNasc, ArrayList<Veiculo> listaVeiculos ) {
+    public Cliente_pf ( String nome, String endereço, String telefone, String email, String cpf, String genero, String educacao, LocalDate dataNasc, ArrayList<Veiculo> listaVeiculos ) {
         // chama o construtor da superclasse
         super ( nome, endereço, telefone, email );
         this.cpf = cpf;
@@ -23,7 +23,7 @@ public class Cliente_pf extends Cliente{
     public String getCpf() {
         return cpf;
     }
-    public Date getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
     public String getEducacao() {
@@ -35,7 +35,7 @@ public class Cliente_pf extends Cliente{
     public ArrayList<Veiculo> getListaVeiculos() {
         return listaVeiculos;
     }
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
     public void setEducacao(String educacao) {

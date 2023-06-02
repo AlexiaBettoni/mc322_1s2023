@@ -48,6 +48,7 @@ public enum MenuOperacoes {
                 scan.nextLine();
                 Cliente novo = Cadastros.clienteporNome(baseSeg, nome);
                 Seguro c = Cadastros.SeguroporCliente(baseSeg, novo);
+                System.out.println(c.getValorMensal());
                 
             case SAIR:
                 System.out.println("Agradeçemos a atenção, tenha um bom dia:)");
@@ -60,7 +61,7 @@ public enum MenuOperacoes {
     
     //Menu cadastro
     public void selectcad(){
-        System.out.println("Digite a sua escolha entre as opções: \n11- Cadastrar Cliente PF ou PJ\n12- Cadastrar Veículo\n13- Cadastrar Seguradora\n14- Voltar");
+        System.out.println("Digite a sua escolha entre as opções: \n11- Cadastrar Cliente PF ou PJ\n12- Cadastrar Veículo\n13- Voltar");
         int valor = scan.nextInt();
         scan.nextLine();
 
@@ -81,10 +82,8 @@ public enum MenuOperacoes {
                 String nome = scan.nextLine();
                 scan.nextLine();
                 Veiculo carro = Cadastros.inVeiculo();
-                
+                Cadastros.adicionarVeiculo(Cadastros.clienteporNome(baseSeg, nome), carro);
             case 13:
-                System.out.println("Digite os dados para o cadastro da Seguradora");
-            case 14:
                 select();
             default:
                 System.out.println("Digite um valor válido");

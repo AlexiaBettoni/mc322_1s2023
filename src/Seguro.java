@@ -1,20 +1,20 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Seguro {
     public static int casos = 1;
     final private int id;
     int VALOR_BASE = 10;
-    Date dataInicio, dataFim;
+    LocalDate dataInicio, dataFim;
     Cliente cliente;
     Seguradora seguradora;
     ArrayList<Sinistro> listaSinistros;
     ArrayList<Condutor> condutores;
     int valorMensal;
 
-    public Seguro(Date datainicio, Date datafim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros, Cliente cliente){
+    public Seguro(LocalDate datainicio, LocalDate datafim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros, Cliente cliente){
         this.id = casos;
         casos+=1;
         this.dataFim = datafim;
@@ -26,10 +26,10 @@ public abstract class Seguro {
 
     //getters e setters
     //não tem setter do ID pois ele é final
-    public Date getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
     public int getId() {
@@ -41,10 +41,10 @@ public abstract class Seguro {
     public Seguradora getSeguradora() {
         return seguradora;
     }
-    public void setDataFim(Date dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
     public void setListaSinistros(ArrayList<Sinistro> listaSinistros) {
@@ -59,7 +59,9 @@ public abstract class Seguro {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
+    public int getValorMensal() {
+        return valorMensal;
+    }
     //To String
     public String toString() {
         String texto = "\nSeguro id: "+id +", Seguradora: "+seguradora;
@@ -80,7 +82,7 @@ public abstract class Seguro {
     }
 
     //Gerar Sinistro
-    public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public boolean gerarSinistro(LocalDate data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         Sinistro sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);
         return true;

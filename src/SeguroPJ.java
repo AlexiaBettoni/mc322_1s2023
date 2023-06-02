@@ -1,6 +1,6 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SeguroPJ extends Seguro{
@@ -9,7 +9,7 @@ public class SeguroPJ extends Seguro{
     boolean autoriza = true;
     int VALOR_BASE = 10;
 
-    public SeguroPJ(Frota frota, Cliente_pj cliente, Date dataini, Date datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
+    public SeguroPJ(Frota frota, Cliente_pj cliente, LocalDate dataini, LocalDate datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
         super(dataini, datafim, seguradora, listaSinistros, cliente);
         this.cliente = cliente;
         this.frota = frota;
@@ -63,7 +63,7 @@ public class SeguroPJ extends Seguro{
     }
 
     //Gerar Sinistro
-    public boolean gerarSinistro(Date data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public boolean gerarSinistro(LocalDate data,String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         Sinistro sinistro;
         sinistro = new Sinistro(data, endereço, seguradora, veiculo, cliente);
         listaSinistros.add(sinistro);

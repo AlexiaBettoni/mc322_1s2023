@@ -1,17 +1,17 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente_pj extends Cliente{
     private final String cnpj;
-    private Date dataFundacao;
+    private LocalDate dataFundacao;
     ArrayList<Frota> listaFrota;
     Scanner scan = new Scanner(System.in);
 
     //Constructor
-    public Cliente_pj(String nome, String endereço, String telefone, String email, Date dataFundacao, String cnpj, ArrayList<Frota> listaFrota){
+    public Cliente_pj(String nome, String endereço, String telefone, String email, LocalDate dataFundacao, String cnpj, ArrayList<Frota> listaFrota){
         super ( nome , endereço, email, telefone);
         this.listaFrota = listaFrota;
         this.dataFundacao = dataFundacao;
@@ -22,10 +22,10 @@ public class Cliente_pj extends Cliente{
     public String getcnpj(){
         return cnpj;
     }
-    public Date getdataFundacao(){
+    public LocalDate getdataFundacao(){
         return dataFundacao;
     }
-    public void setdataFundacao(Date dataFundacao){
+    public void setdataFundacao(LocalDate dataFundacao){
         this.dataFundacao = dataFundacao;
     }
     public ArrayList<Frota> getListaFrota() {

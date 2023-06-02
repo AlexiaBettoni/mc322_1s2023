@@ -1,18 +1,18 @@
 package src;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Sinistro {
     public static int casos = 1;
     private int id;
-    private Date data;
+    private LocalDate data;
     private String endereço;
     private Seguradora seguradora;
     private Veiculo veiculo;
     private Cliente cliente;
 
     //Constructor
-    public Sinistro(Date data, String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public Sinistro(LocalDate data, String endereço, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
         this.id = casos;
         casos+=1;
         this.data = data;
@@ -23,10 +23,10 @@ public class Sinistro {
     }
 
     //Setters e Getters
-    public Date getdata(){
+    public LocalDate getdata(){
         return data;
     }
-    public void setdata(Date data){
+    public void setdata(LocalDate data){
         this.data = data;
     }
     public String getendereço(){
