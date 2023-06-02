@@ -1,6 +1,7 @@
 package src;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class SeguroPJ extends Seguro{
@@ -8,11 +9,14 @@ public class SeguroPJ extends Seguro{
     Frota frota;
     boolean autoriza = true;
     int VALOR_BASE = 10;
+    int qtdFuncionarios;
 
-    public SeguroPJ(Frota frota, Cliente_pj cliente, LocalDate dataini, LocalDate datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros){
+    public SeguroPJ(Frota frota, Cliente_pj cliente, LocalDate dataini, LocalDate datafim, Seguradora seguradora,  ArrayList<Sinistro> listaSinistros, int funcionarios, ArrayList<Condutor> condutors){
         super(dataini, datafim, seguradora, listaSinistros, cliente);
         this.cliente = cliente;
         this.frota = frota;
+        this.qtdFuncionarios = funcionarios;
+        this.condutores = condutors;
     }
 
     //getters e setters
@@ -28,6 +32,12 @@ public class SeguroPJ extends Seguro{
     }
     public void setFrota(Frota frota) {
         this.frota = frota;
+    }
+    public int getQtdFuncionarios() {
+        return qtdFuncionarios;
+    }
+    public void setQtdFuncionarios(int qtdFuncionarios) {
+        this.qtdFuncionarios = qtdFuncionarios;
     }
 
     //to String
@@ -54,11 +64,17 @@ public class SeguroPJ extends Seguro{
         }
         return false;
     }
+    
 
     //Calcula valor
-    public int calculaValor(int funcionarios, int veiculos, int anos, int sinCli, int sinCond){
+    public int calculaValor(){
         int valor;
-        valor = VALOR_BASE * (10 + funcionarios /10) * (1 + 1/( veiculos +2) ) * (1 + 1/( anos + 2) ) * (2 + sinCli /10) * (5 + sinCond /10);
+
+        //saber a idade em anos
+        Period intervalo = Period.between(cliente.getdataFundacao(), LocalDate.now());
+        int idade = intervalo.getYears();
+
+        valor = VALOR_BASE * (10 + qtdFuncionarios /10) * (1 + 1/( frota.getListaVeiculos().size()+2) ) * (1 + 1/(idade + 2) ) * (2 + listaSinistros.size() /10) * (5 + condutores.size() /10);
         return valor;
     }
 

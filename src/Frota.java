@@ -13,6 +13,7 @@ public class Frota {
         this.listaVeiculos = Carros;
     }
 
+    //getters e setters
     public ArrayList<Veiculo> getListaVeiculos() {
         return listaVeiculos;
     }
@@ -46,7 +47,4 @@ public class Frota {
         }
         return false;
     }
-
-    
-
 }

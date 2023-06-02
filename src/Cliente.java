@@ -42,7 +42,4 @@ public abstract class Cliente {
         String texto = "\nCliente: "+nome + ", telefone: "+ telefone;
         return texto;
     }
-
-    
-
 }

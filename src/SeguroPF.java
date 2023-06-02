@@ -1,6 +1,7 @@
 package src;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class SeguroPF extends Seguro{
@@ -60,9 +61,13 @@ public class SeguroPF extends Seguro{
     }
 
     //Calcula valor
-    public void calculaValor(int idade, int qtdvei, int anos, int sinCli, int sinCond){
-        double FATOR_IDADE;
+    public void calculaValor(){
         double valor;
+        double FATOR_IDADE;
+
+        //saber a idade em anos
+        Period intervalo = Period.between(cliente.getDataNasc(), LocalDate.now());
+        int idade = intervalo.getYears();
 
         if (idade<30){
             FATOR_IDADE = 1.25;
@@ -72,7 +77,7 @@ public class SeguroPF extends Seguro{
             FATOR_IDADE = 1.5;
         }
 
-        valor = VALOR_BASE * FATOR_IDADE * (1 + 1/( qtdvei +2) ) * (2 + sinCli /10) * (5 + sinCond /10);
+        valor = VALOR_BASE * FATOR_IDADE * (1 + 1/( cliente.getListaVeiculos().size() + 2) ) * (2 + listaSinistros.size() /10) * (5 + condutores.size() /10);
         this.valorMensal = (int)valor;
     }
 }

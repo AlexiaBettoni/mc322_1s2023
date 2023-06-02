@@ -4,8 +4,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
-//Classe criada para ter métodos de cadastro através do teclado
+//Classe criada para ter métodos de auxilio, para que nas classes principais os códigos fiquem mais fáceis de entender e intuitivos.
 public class Cadastros {
     static Scanner input = new Scanner(System.in);
     //Método para cadastrar a classe veículo pelo teclado
@@ -127,6 +126,7 @@ public class Cadastros {
         return cliente;
     }
 
+    //método de busca de seguro com base no id
     public static Seguro SeguroporId(Seguradora seg, int id){
         Seguro cliente = null;
         for (Seguro clie: seg.getListaSeguros()){
@@ -137,6 +137,7 @@ public class Cadastros {
         return cliente;
     }
     
+    //método para encontrar o seguro de um cliente dentro da seguradora
     public static Seguro SeguroporCliente(Seguradora seg, Cliente nome){
         Seguro seguro = null;
         for (Seguro clie: seg.getListaSeguros()){
@@ -147,6 +148,7 @@ public class Cadastros {
         return seguro;
     }
 
+    //método para achar um sinistro com base no seu id
     public static Sinistro SinistroporId(Seguro seg, int id){
         Sinistro cliente = null;
         for (Sinistro clie: seg.listaSinistros){
@@ -217,7 +219,7 @@ public class Cadastros {
         return veiculos;
     }
 
-    //método para pegar o veículo por placa 
+    //método para achar o veículo por placa 
     public static Veiculo veiculoPorPlaca(Seguradora seg, String placa){
         Veiculo carro = null;
         ArrayList<Veiculo> veiculos = allVeiculos(seg);
@@ -229,6 +231,7 @@ public class Cadastros {
         return carro;
     }
 
+    //método para remover um veículo de um cliente 
     public static boolean excluirVeiculo(Cliente cliente, Veiculo veiculo){
         boolean base;
         if (cliente instanceof Cliente_pf){
@@ -250,6 +253,7 @@ public class Cadastros {
         return false;
     }
     
+    //método que retorna todos os veículos que um cliente tem dado o seu nome
     public static ArrayList<Veiculo> listarVeiculo(String nome, Seguradora seg){
         Cliente cliente= clienteporNome(seg, nome);
         if (cliente instanceof Cliente_pf){
@@ -269,6 +273,7 @@ public class Cadastros {
         return null;
     }
 
+    //método que retorna todos os sinistros de um cliente dentro de uma seguradora
     public static ArrayList<Sinistro> sinistroPorCliente(Seguradora seg, String nome){
         Cliente cliente = clienteporNome(seg, nome);
         ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
@@ -281,6 +286,7 @@ public class Cadastros {
         return sinistros;
     }
 
+    //método para adicionar um veículo dado um cliente
     public static void adicionarVeiculo(Cliente cliente, Veiculo veiculo){
         if (cliente instanceof Cliente_pf){
             Cliente_pf clientePF = (Cliente_pf)cliente;

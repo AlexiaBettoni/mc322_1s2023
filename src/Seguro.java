@@ -62,6 +62,10 @@ public abstract class Seguro {
     public int getValorMensal() {
         return valorMensal;
     }
+    public ArrayList<Condutor> getCondutores() {
+        return condutores;
+    }
+    
     //To String
     public String toString() {
         String texto = "\nSeguro id: "+id +", Seguradora: "+seguradora;
